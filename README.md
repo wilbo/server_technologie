@@ -228,21 +228,22 @@ public ActionResult Edit(AuthorsViewModel author)
 10. Profit!
 
 
-### Creating a Database
+### Creating a Database and connecting manualy
 1. SQL Server Object Explorer
 2. RightClick: Databases
 3. click: Create Database
 4. Name database
-5. Edit, Copy & Paste connectionstring above "<appSettings>":
+5. Edit, Copy & Paste connectionstring above "appSettings":
+```xml
   <connectionStrings>
     <add name="__NAME__" connectionString="__CONNECTIONSTRING__" providerName="System.Data.SqlClient" />
   </connectionStrings>
+```
 
 ### REST API
 1. Perform steps: **New MVC + Entity Project** & **Scaffolding DB, DBcontext & Controller**
 2. Scaffold API Controller with: “Web API 2 Controller with actions, using Entity Framework”
-3. Apply the changes to Global.asax.cs according to readme.txt that popped up.
-4. ORDER MATTERS:
+3. Apply the changes to Global.asax.cs according to readme.txt that popped up:
 ```cs
 public class MvcApplication : System.Web.HttpApplication
 {
