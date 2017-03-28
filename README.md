@@ -2,14 +2,12 @@
 
 
 ### New MVC + Entity Project
-
   1. New Project: "ASP.NET Web Application (.NET Framework)"
   2. Create Models first!
   3. RUN IN PMC: install-Package EntityFramework
 
 
 ### Scaffolding DB, DBcontext & Controller
-
   1. Add new Controller
   2. Choose: "MVC 5 Controller with views, using Entity Framework"
       - select a Model Class
@@ -17,14 +15,13 @@
       - Leave name alone
   3. Run Project to fill database
   
-### migrations
+### Migrations
   1. Make sure you have an existing database (only first time)
   2. RUN IN PMC: Enable-Migrations (only first time)
   3. for migration: RUN IN PMC: add-migration **migrationname**
   
   
-### one to many tips with dropdown
-
+### ONE TO MANY, tips with dropdown
 1. Create Department and Employee model
 ```cs
 // Department code
@@ -53,8 +50,7 @@ public class Employee
 4. Add some test data
 5. Profit
   
-### many to many tips with checkboxes
-
+### MANY TO MANY, tips with checkboxes
 1. Create Authors, Books and AuthorToBook (Tussentabel)
 
 ```cs
@@ -228,12 +224,7 @@ public ActionResult Edit(AuthorsViewModel author)
 9. Run, add authors and books and edit them. In the edit form you will notice the changes in the data.
 10. Profit!
 
-
-
-
-
-// Creating a Database
-
+### Creating a Database
 1. SQL Server Object Explorer
 2. RightClick: Databases
 3. click: Create Database
