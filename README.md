@@ -23,9 +23,35 @@
   3. for migration: RUN IN PMC: add-migration **migrationname**
   
   
-### one to many tips
+### one to many tips with dropdown
 
-- add reference id above connection in model
+1. Create Department and Employee model
+```cs
+// Department code
+public class Department
+{
+	public int DepartmentID { get; set; }
+	public string DepartmentName { get; set; }
+
+	public virtual ICollection<Employee> Employees { get; set; }
+}
+```
+```cs
+public class Employee
+{
+	public int EmployeeID { get; set; }
+	public string Name { get; set; }
+	public string LastName { get; set; }
+
+    // this id is important for the scaffolding of selectable dropdown 
+	public int DepartmentID { get; set; }
+	public virtual Department Department { get; set; }
+}
+```
+2. Add controllers and views (step described above): Scaffolding DB, DBcontext & Controller
+3. if neccesary (step described above): migrations
+4. Add some test data
+5. Profit
   
 ### many to many tips with checkboxes
 
@@ -87,8 +113,9 @@ public class CheckBoxViewModel
 }
 ```
 3. Add controllers and views (step described above): **Scaffolding DB, DBcontext & Controller**
-4. if neccesary (step described above): **migrations** 
-5. Edit AuthorsController in method: "GET: Authors/Edit/5". This wil setup the model for rendering the view
+4. if neccesary (step described above): **migrations**
+5. Add some test data
+6. Edit AuthorsController in method: "GET: Authors/Edit/5". This wil setup the model for rendering the view.
 ```cs
 // complete code
 // GET: Authors/Edit/5
@@ -136,7 +163,7 @@ public ActionResult Edit(int? id)
 	return View(MyViewModel);
 }
 ```
-6. Edit view at ./Views/Authors/Edit.cshtml. This will create the checkboxes.
+7. Edit view at ./Views/Authors/Edit.cshtml. This will create the checkboxes.
 ```cs
 // use AuthorsViewModel
 @model ManyToManyPractise.Models.AuthorsViewModel
@@ -161,7 +188,7 @@ public ActionResult Edit(int? id)
 // ... scaffold code
 
 ```
-7. edit AuthorsController method: "POST: Authors/Edit/5". This will make form changes reflect in the database
+8. edit AuthorsController method: "POST: Authors/Edit/5". This will make form changes reflect in the database
 ```cs
 // POST: Authors/Edit/5
 [HttpPost]
@@ -198,7 +225,7 @@ public ActionResult Edit(AuthorsViewModel author)
     return View(author);
 }
 ```
-8. run, add authors and books and edit them. In the edit form you will notice the changes in the data.
+9. run, add authors and books and edit them. In the edit form you will notice the changes in the data.
 
 
 
