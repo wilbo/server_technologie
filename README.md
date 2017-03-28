@@ -238,4 +238,58 @@ public ActionResult Edit(AuthorsViewModel author)
     <add name="__NAME__" connectionString="__CONNECTIONSTRING__" providerName="System.Data.SqlClient" />
   </connectionStrings>
 
+### REST API
+1. Perform steps: **New MVC + Entity Project** & **Scaffolding DB, DBcontext & Controller**
+2. Scaffold API Controller with: “Web API 2 Controller with actions, using Entity Framework”
+3. Apply the changes to Global.asax.cs according to readme.txt that popped up.
+4. ORDER MATTERS:
+```cs
+public class MvcApplication : System.Web.HttpApplication
+{
+	protected void Application_Start()
+	{
+		// WATCH OUT: this order matters
+		GlobalConfiguration.Configure(WebApiConfig.Register);
+		AreaRegistration.RegisterAllAreas();
+		FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+		RouteConfig.RegisterRoutes(RouteTable.Routes);
+		BundleConfig.RegisterBundles(BundleTable.Bundles);
+	}
+}
+```
+
+### Getting REST Data
+1. Create a console application
+2. Add the follwoing content in Program.cs
+```cs
+class Program
+{
+	static HttpClient client = new HttpClient();
+
+	static void Main()
+	{
+		RunAsync().Wait();
+	}
+
+	static async Task RunAsync()
+	{
+		client.BaseAddress = new Uri("http://localhost:50210/");
+		client.DefaultRequestHeaders.Accept.Clear();
+		client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
+			
+		HttpResponseMessage response = client.GetAsync("/api/Persons").Result;
+		if (response.IsSuccessStatusCode)
+		{
+			String xmlString = response.Content.ReadAsStringAsync().Result;
+			Console.WriteLine(xmlString);
+		}
+	
+		Console.ReadLine();
+	}
+}
+```
+3. Profit
+
+
+
 
