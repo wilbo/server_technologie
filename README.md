@@ -291,6 +291,75 @@ class Program
 ```
 3. Profit
 
+### Session
+goal: track spelers that were added this session, abondon session trough button click
+1. Use session in controllers like this:
+
+```cs
+[HttpPost]
+[ValidateAntiForgeryToken]
+public ActionResult Create([Bind(Include = "Id,Naam")] Speler speler)
+{
+	if (ModelState.IsValid)
+	{
+		db.Spelers.Add(speler);
+		db.SaveChanges();
+
+                // This is the stuff we need:
+		// when a spelers id added, add its id to a list in session
+		// _____________________________________________________________
+                List<int> spelerIds;
+                spelerIds = (List<int>)Session["speler_ids"];
+                if (spelerIds == null)
+                {
+                    spelerIds = new List<int>();
+                }
+                spelerIds.Add(speler.Id);
+                Session["speler_ids"] = spelerIds;
+		// _____________________________________________________________
+
+                // Opgave 3
+                return RedirectToAction("Index", "home", null);
+	}
+
+	return View(speler);
+}
+```
+2. Use session in templates like this:
+```cs
+@foreach (var item in Model)
+{
+	<tr>
+	<td>
+		@{
+			List<int> spelerIds = (List<int>)Session["speler_ids"];
+			if ((spelerIds != null) && (spelerIds.Contains(item.Id)))
+			{
+				<div style="color:red;">@Html.DisplayFor(modelItem => item.Naam)</div>
+			}
+			else
+			{
+				@Html.DisplayFor(modelItem => item.Naam)
+			}
+		}
+	</td>
+		
+  // ... some other code
+		
+	</tr>
+}
+
+// end session link
+@Html.ActionLink("Sessie beëindigen", "Stop", "Home", null, new { @class = "btn btn-primary", @style = "color:white" })
+```
+3. End session like link above and in controller like this:
+```cs
+public ActionResult Stop()
+{
+	Session.Abandon();
+	return View();
+}
+```
 
 
 
