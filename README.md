@@ -14,11 +14,13 @@
       - Create a new context (if no context already)
       - Leave name alone
   3. Run Project to fill database
-  
+
+
 ### Migrations
   1. Make sure you have an existing database (only first time)
   2. RUN IN PMC: Enable-Migrations (only first time)
   3. for migration: RUN IN PMC: add-migration **migrationname**
+  4. to re-add seed data: RUN IN PMC: update-database
   
   
 ### ONE TO MANY, tips with dropdown
@@ -49,6 +51,7 @@ public class Employee
 3. if neccesary (step described above): migrations
 4. Add some test data
 5. Profit
+  
   
 ### MANY TO MANY, tips with checkboxes
 1. Create Authors, Books and AuthorToBook (Tussentabel)
@@ -223,6 +226,7 @@ public ActionResult Edit(AuthorsViewModel author)
 ```
 9. Run, add authors and books and edit them. In the edit form you will notice the changes in the data.
 10. Profit!
+
 
 ### Creating a Database
 1. SQL Server Object Explorer
