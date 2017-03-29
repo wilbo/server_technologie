@@ -230,10 +230,11 @@ public ActionResult Edit(AuthorsViewModel author)
 
 ### Creating a Database and connecting manualy
 1. SQL Server Object Explorer
-2. RightClick: Databases
+2. right-click: Databases
 3. click: Create Database
 4. Name database
-5. Edit, Copy & Paste connectionstring above "appSettings":
+5. in SQL Server Object Explorer, right-click database > properties to get connectionstring from infobox 
+6. Edit, Copy & Paste the following snippet with a name & connectionstring above "appSettings":
 ```xml
   <connectionStrings>
     <add name="__NAME__" connectionString="__CONNECTIONSTRING__" providerName="System.Data.SqlClient" />
