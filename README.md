@@ -275,7 +275,8 @@ public class MvcApplication : System.Web.HttpApplication
 
 ### Getting REST Data
 1. Create a console application
-2. Add the follwoing content in Program.cs
+2. leave parent project running and keep the port in mind.
+3. Add the follwoing content in Program.cs
 ```cs
 class Program
 {
@@ -288,6 +289,7 @@ class Program
 
 	static async Task RunAsync()
 	{
+		// port may vary!
 		client.BaseAddress = new Uri("http://localhost:50210/");
 		client.DefaultRequestHeaders.Accept.Clear();
 		client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/xml"));
@@ -303,7 +305,6 @@ class Program
 	}
 }
 ```
-3. Profit
 
 ### Session
 goal: track spelers that were added this session, abondon session trough button click
