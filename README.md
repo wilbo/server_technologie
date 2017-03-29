@@ -333,19 +333,24 @@ public ActionResult Create([Bind(Include = "Id,Naam")] Speler speler)
 	<tr>
 	<td>
 		@{
+			// get a list of spelerId's from session
 			List<int> spelerIds = (List<int>)Session["speler_ids"];
+			
+			// check to see if a we have a list and spelerid matches
 			if ((spelerIds != null) && (spelerIds.Contains(item.Id)))
 			{
+				// render the supercool red name
 				<div style="color:red;">@Html.DisplayFor(modelItem => item.Naam)</div>
 			}
 			else
 			{
+				// render normal name
 				@Html.DisplayFor(modelItem => item.Naam)
 			}
 		}
 	</td>
 		
-  // ... some other code
+	// ... some other code
 		
 	</tr>
 }
