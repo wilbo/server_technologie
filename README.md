@@ -240,6 +240,19 @@ public ActionResult Edit(AuthorsViewModel author)
     <add name="__NAME__" connectionString="__CONNECTIONSTRING__" providerName="System.Data.SqlClient" />
   </connectionStrings>
 ```
+7. create a context like this and add the correct databasename:
+```cs
+public class MySuperAwesomeDbContext : DbContext
+{
+	public MySuperAwesomeDbContext() : base("__NAME__") { }
+	
+	// DB sets ...
+	// public DbSet<Speler> Spelers { get; set; }
+	// public DbSet<Partij> Partijen { get; set; }
+	// moar...
+}
+```
+8. Run & Profit.
 
 ### REST API
 1. Perform steps: **New MVC + Entity Project** & **Scaffolding DB, DBcontext & Controller**
